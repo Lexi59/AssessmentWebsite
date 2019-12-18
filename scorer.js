@@ -67,8 +67,8 @@ function outputresults(){
 	output.value(string);
 }
 function resetBtnPressed(){
-	input.value();
-	output.value();
+	input.value('');
+	output.value('');
 	for(var i = 0; i < digitalStringsNum; i++){
 		digitalStringsFound[i] = 0;
 	}
