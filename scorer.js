@@ -1,4 +1,4 @@
-let input, submit;
+let input, submit, reset, output;
 let paddingValue = "                              ";
 let digitalStringsNum = 11;
 let nondigitalStringsNum = 9;
@@ -14,11 +14,15 @@ function setup(){
 	input.position(windowWidth/4, 10);
 	submit = createButton("Submit");
 	submit.size(100, 20);
-	submit.position(windowWidth/2-50, windowHeight/4+20);
+	submit.position(windowWidth/2-110, windowHeight/4+20);
 	submit.mousePressed(submitBtnPressed);
 	output = createElement('textarea');
 	output.size(windowWidth/2, windowHeight/4);
 	output.position(windowWidth/4, windowHeight/4 + 50);
+	reset = createButton("Reset");
+	reset.size(100, 20);
+	reset.position(windowWidth/2+ 10, windowHeight/4+20);
+	reset.mousePressed(resetBtnPressed);
 
 	for(var i = 0; i < digitalStringsNum; i++){
 		digitalStringsFound[i] = 0;
@@ -53,7 +57,7 @@ function outputresults(){
 		string += (digitalStringsToLookFor[i]+paddingValue).slice(0,paddingValue.length) + " " + digitalStringsFound[i] + "\n";
 		total += digitalStringsFound[i];
 	}
-	string += ("DIGITAL TOTAL:"+paddingValue).slice(0, paddingValue.length) + " " + total + "\n";
+	string += ("DIGITAL TOTAL:"+paddingValue).slice(0, paddingValue.length) + " " + total + "\n\n";
 	total = 0
 	for(var i = 0; i < nondigitalStringsNum; i++){
 		string += (nondigitalStringsToLookFor[i]+paddingValue).slice(0,paddingValue.length) + " " + nondigitalStringsFound[i] + "\n";
@@ -61,4 +65,14 @@ function outputresults(){
 	}
 	string += ("NON-DIGITAL TOTAL:"+paddingValue).slice(0, paddingValue.length) + " " + total;
 	output.value(string);
+}
+function resetBtnPressed(){
+	input.value();
+	output.value();
+	for(var i = 0; i < digitalStringsNum; i++){
+		digitalStringsFound[i] = 0;
+	}
+	for(var i = 0; i < nondigitalStringsFound; i++){
+		nondigitalStringsFound[i] = 0;
+	}
 }
