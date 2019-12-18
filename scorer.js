@@ -4,7 +4,7 @@ let digitalStringsNum = 11;
 let nondigitalStringsNum = 9;
 let digitalStringsFound = new Array(digitalStringsNum);
 let nondigitalStringsFound = new Array(nondigitalStringsNum);
-let digitalStringsToLookFor = ["digital", "online", "technolog", "project management", "project plan", "digital librar", "digital project", "digital technique", "design process", "automated", "digital project management"];
+let digitalStringsToLookFor = ["online", "technolog", "project management", "project plan", "digital librar", "digital project", "digital technique", "design process", "automated", "digital project management", "digital"];
 let nondigitalStringsToLookFor = ["non-digital", "manual", "paper","bulletin board", "process", "project management", "project plan", "non-digital project management", "project scheduling"];
 
 function setup(){
@@ -30,19 +30,19 @@ function setup(){
 function submitBtnPressed(){
 	var text = input.value().toLowerCase();
 	console.log(text);
-	for(var i = 0; i < digitalStringsNum; i++){
-		while(text.indexOf(digitalStringsToLookFor[i]) != -1){
-			digitalStringsFound[i]++;
-			text = text.replace(digitalStringsToLookFor[i],"");
-		}
-		console.log(digitalStringsToLookFor[i] + ": " + digitalStringsFound[i]);
-	}
 	for(var i = 0; i < nondigitalStringsNum; i++){
 		while(text.indexOf(nondigitalStringsToLookFor[i]) != -1){
 			nondigitalStringsFound[i]++;
 			text = text.replace(nondigitalStringsToLookFor[i],"");
 		}
 		console.log(nondigitalStringsToLookFor[i] + ": " + nondigitalStringsFound[i]);
+	}
+	for(var i = 0; i < digitalStringsNum; i++){
+		while(text.indexOf(digitalStringsToLookFor[i]) != -1){
+			digitalStringsFound[i]++;
+			text = text.replace(digitalStringsToLookFor[i],"");
+		}
+		console.log(digitalStringsToLookFor[i] + ": " + digitalStringsFound[i]);
 	}
 	outputresults();
 }
