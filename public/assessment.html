@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body onload="javascript:load()">
+      <h1 id="assessTitle"></h1>
+      <p id ="assessingChild"></p>
+      <table id="childList"></table>
+
+      <div id="testDiv">
+        <h1 id="textQuestion"></h1>
+        <div id="imgDiv"><img id="imgQuestion"></div>
+        <button onclick="recordYes();">Yes</button>
+        <button onclick="recordNo();">No </button>
+        <br><br>
+        <label for="noteBox">Notes:</label>
+        <input type="text" id="noteBox">
+      </div>
+      <h1 id ="done">Assessment Complete</h1>
+  </body>
+</html>

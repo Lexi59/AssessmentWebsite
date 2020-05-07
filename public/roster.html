@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body onload="changeTab('Math');">
+    <h1>Mrs.VW's Assessments</h1>
+    <ul class = 'navbar'>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="roster.html" class = 'active'>Roster</a></li>
+    </ul>
+    <ul class="navbar" id = "studentTabs">
+      <li><a onclick="changeTab('Math');" class = "active" id = 'math'>Math</a></li>
+      <li><a onclick="changeTab('Reading');" id = 'reading'>Reading</a></li>
+      <li><a onclick="changeTab('Phonics');" id = 'phonics'>Phonemic Awareness</a></li>
+    </ul>
+    <button id = "newStudent" onclick="createStudent();">&#43; New Student</button>
+    <table id = 'rosterTable'></table>
+  </body>
+</html>

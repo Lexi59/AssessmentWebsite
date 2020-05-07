@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body onload="changeReportTab('Math');">
+    <h1>Mrs.VW's Assessments</h1>
+    <ul class = 'navbar'>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="reports.html" class = 'active'>Reports</a></li>
+      <li><a href="roster.html">Roster</a></li>
+    </ul>
+    <ul class="navbar" id = "studentTabs">
+      <li><a onclick="changeReportTab('Math');" class = "active" id = 'math'>Math</a></li>
+      <li><a onclick="changeReportTab('Reading');" id = 'reading'>Reading</a></li>
+      <li><a onclick="changeReportTab('Phonics');" id = 'phonics'>Phonemic Awareness</a></li>
+    </ul>
+    <button id="back" onclick="back();">Back</button>
+    <table id = 'reportTable'></table>
+    <div id = "reportDiv">
+      <h2 id = "reportTitle"></h2>
+      <div id="reportList"></div>
+      <h2 id="score"></h2>
+      <ul id="answers"></ul>
+    </div>
+  </body>
+</html>

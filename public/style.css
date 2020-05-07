@@ -1,0 +1,174 @@
+h1{
+    text-align: center;
+    font-size: 300%;
+}
+@font-face {
+    font-family: myFirstFont;
+    src: url('resources/KGMissKindergarten.ttf');
+  }
+body{
+    font-family: myFirstFont;
+}
+/*navigation bar*/
+ul.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  } 
+.navbar li {
+    float: left;
+  }
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+.navbar li a:hover {
+    background-color: #111;
+  }
+.navbar .active {
+    background-color: #820263;
+  }
+
+/*child list*/
+ul{
+    list-style: none;
+}
+.sections ul li{
+    padding: .25em;
+}
+.sections ul li a{
+    text-decoration: none;
+}
+.sections ul li a:visited{
+    color: #820263;
+}
+.sections ul li a:hover{
+    color:black;
+}
+#assessingChild{
+    display: none;
+    text-align: center;
+}
+#testDiv{
+    display:none;
+    text-align: center;
+    height:90%;
+}
+#done{
+    display: none;
+    text-align: center;
+}
+button{
+    font-size:250%;
+    margin:0 2em 0 2em;
+    width: 2.5em;
+}
+#textQuestion{
+    margin:0 0 .25em 0;
+    font-size: 1500%;
+}
+img{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    height:100%;
+    width:auto;
+    max-width: 100%;
+}
+#imgDiv{
+    height: 250px;
+    width: 100%;
+    padding: .25em;
+}
+.sections{
+    float:left;
+    width:33%;
+}
+#newStudent{
+    font-size: 100%;
+    width: auto;
+    margin-top: .75em;
+    background-color: #820263;
+    padding: .5em;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+#studentTabs{
+    background-color: #a8a4a6;
+    margin-top: .5em;
+}
+#studentTabs li a:hover{
+    background-color: #858384;
+}
+#studentTabs .active{
+    background-color: #2C5784;
+}
+table{
+    width: 97%;
+    margin: .75em;
+    align-content: center;
+    table-layout: auto;
+    text-align: right;
+    border-collapse: collapse;
+}
+th{
+    border:1px solid black;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+td{
+    border: 1px solid black;
+    margin:0;
+    padding: 0;
+}
+#childList{
+    width: 50%;
+    margin: 0 25% 0 25%;
+}
+#reportDiv{
+    display:none;
+    width: 100%;
+    align-content: center;
+}
+#back{
+    display:none;
+    width: 3.5em;
+    font-size: 100%;
+    margin: .25em 0 .25em .25em;
+}
+h2{
+    text-align: center;
+}
+#reportList{
+    display:inline-block;
+    width:100%;
+    text-align: center;
+}
+#reportList a{
+    padding: .75em;
+}
+.correct{
+    color: green;
+}
+.incorrect{
+    color:red;
+}
+#answers li{
+    display: inline-block;
+    float:none;
+    padding: .25em;
+} 
+#answers{
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+}
