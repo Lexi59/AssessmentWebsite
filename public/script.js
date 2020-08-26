@@ -4,13 +4,12 @@ let notes = [];
 let currentChild = "";
 let currentTab = "Math";
 let testDiv, txtQuestion, imgQuestion;
-let mathAssessments = ["Identify Numbers", "Counting","Identify Colors","Greater Than/Less Than","Pattern Recognition","2D Shapes", "3D Shapes","Coins"];
-let mathAssessmentsFunctions = [idNums, counting, colors, gtandlt, patternRecog, shapes2D, shapes3D, coins];
-let readingAssessments = ["Positional Words","Days of the Week","Months","Identify Letters","Identify Letter Sounds","Long Vowel Sounds","Blending Sounds","Blending Nonsense Sounds","Beginning/Middle/Ending Sounds","Color Words","Number Words","Sight Words 1","Sight Words 2"];
-let readingAssessmentsFunctions = [positional, days, months, idLetters, idLetterSounds, longVowels, blendingSounds, blendingNonsense, bmeSounds, colorWords, numberWords, sightOne, sightTwo];
-let phonicsAssessments = ["Rhyming","Blending","Segmenting","Syllables","Phoneme Substitution","Phoneme Deletion"];
-let phonicsAssessmentsFunctions = [rhyming, blending, segmenting, syllables, substitution, deletion];
-//consider making a list of assessments to avoid so much hard coding
+const mathAssessments = ["Identify Numbers", "Counting","Identify Colors","Greater Than/Less Than","Pattern Recognition","2D Shapes", "3D Shapes","Coins"];
+const mathAssessmentsFunctions = [idNums, counting, colors, gtandlt, patternRecog, shapes2D, shapes3D, coins];
+const readingAssessments = ["Positional Words","Days of the Week","Months","Identify Letters","Identify Letter Sounds","Long Vowel Sounds","Blending Sounds","Blending Nonsense Sounds","Beginning/Middle/Ending Sounds","Color Words","Number Words","Sight Words 1","Sight Words 2"];
+const readingAssessmentsFunctions = [positional, days, months, idLetters, idLetterSounds, longVowels, blendingSounds, blendingNonsense, bmeSounds, colorWords, numberWords, sightOne, sightTwo];
+const phonicsAssessments = ["Rhyming","Blending","Segmenting","Syllables","Phoneme Substitution","Phoneme Deletion"];
+const phonicsAssessmentsFunctions = [rhyming, blending, segmenting, syllables, substitution, deletion];
 
 function getUrlVars() { 
     var vars = {}; 
@@ -47,28 +46,10 @@ function changeTab(newTab){
     else{phonics.classList = "active"; createRosterTable(table, phonicsAssessments);}
     currentTab = newTab; 
 }
-function changeReportTab(newTab){
-    let math = document.getElementById('math');
-    let reading = document.getElementById('reading');
-    let phonics = document.getElementById('phonics');
-    let table = document.getElementById('reportTable');
-    table.style.display = "block-inline";
-    document.getElementById('reportDiv').style.display = "none";
-    document.getElementById('back').style.display = "none";
-    table.innerHTML = "";
-
-    if(currentTab == "Math"){math.classList = "";}
-    else if (currentTab == "Reading"){reading.classList = "";}
-    else{phonics.classList = "";}
-    if(newTab == "Math"){math.classList = "active"; createReportTable(table, mathAssessments);}
-    else if (newTab == "Reading"){reading.classList = "active"; createReportTable(table, readingAssessments);}
-    else{phonics.classList = "active"; createReportTable(table, phonicsAssessments);}
-    currentTab = newTab; 
-}
 function createRosterTable(table, assessments){
   let thead = table.createTHead();
   let row = thead.insertRow();
-  let headers = ["First Name","Last Name"];
+  let headers = ["Name"];
   let data = headers.concat(assessments);
   for (let key of data) {
     let th = document.createElement("th");
@@ -80,8 +61,11 @@ function createRosterTable(table, assessments){
     getTests().then(tests =>{
         for(let child of children){
             let row = table.insertRow();
-            row.insertCell().appendChild(document.createTextNode(child.name.split(" ")[0]));
-            row.insertCell().appendChild(document.createTextNode(child.name.split(" ")[1]));
+            let text = document.createElement('a');
+            text.textContent = child.name;
+            text.href = "reports.html?name="+encodeURI(child.name);
+            let cell = row.insertCell();
+            cell.appendChild(text);
             for(var i = 0; i < assessments.length; i++){
                 var currentTestTime = 0;
                 var currentTest = "";
@@ -100,6 +84,32 @@ function createRosterTable(table, assessments){
         }
     });
   });
+}
+function report(){
+    document.getElementById('name').textContent = decodeURI(getUrlVars()['name']);
+    child = decodeURI(getUrlVars()['name']);
+    getTests().then(tests =>{
+        for(var test = 0; test < tests.length; test++){
+            console.log(tests[test].currentChild +" "+child);
+            if(tests[test].currentChild == child){
+                for(var i =0; i < tests[test].questions.length; i++){
+                    let newLi = document.createElement('li');
+                    if(tests[test].currentAnswers[i] == "No"){
+                        if(typeof tests[test].questions[i] == "string" && tests[test].questions[i].includes(".")){
+                            newLi.textContent = tests[test].questions[i].split(".")[0];
+                        }
+                        else{
+                            newLi.textContent = tests[test].questions[i];
+                        }
+                        if(tests[test].notes[i] !=""){
+                            newLi.textContent += " (" + tests[test].notes[i] + ")";
+                        }
+                    }
+                    document.getElementById(tests[test].assessment).appendChild(newLi);
+                }
+            }
+        }
+    });
 }
 function createAssessmentPageTable(table, assessment){
     let thead = table.createTHead();
@@ -136,96 +146,6 @@ function createAssessmentPageTable(table, assessment){
             }
           }
       });
-    });
-}
-function createReportTable(table, assessments){
-    console.log("Hello");
-    let thead = table.createTHead();
-    let row = thead.insertRow();
-    let headers = ["First Name","Last Name"];
-    let data = headers.concat(assessments);
-    for (let key of data) {
-      let th = document.createElement("th");
-      let text = document.createTextNode(key);
-      th.appendChild(text);
-      row.appendChild(th);
-    }
-    getStudents().then(children =>{
-      getTests().then(tests =>{
-          for(let child of children){
-              let row = table.insertRow();
-              row.insertCell().appendChild(document.createTextNode(child.name.split(" ")[0]));
-              row.insertCell().appendChild(document.createTextNode(child.name.split(" ")[1]));
-              for(var i = 0; i < assessments.length; i++){
-                  var currentTestTime = 0;
-                  var currentTest = "";
-                  for(var j = 0; j < tests.length; j++){
-                      if(tests[j].assessment == assessments[i] && child.name == tests[j].currentChild && tests[j].timestamp > currentTestTime){
-                          currentTest = tests[j];
-                          currentTestTime = parseInt(tests[j].timestamp);
-                      }
-                  }
-                  if(currentTest==0){row.insertCell().appendChild(document.createTextNode(""));}
-                  else if(parseInt(currentTest.timestamp)>0){
-                      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-                      let text = document.createElement('a');
-                      text.textContent = months[new Date(currentTestTime).getMonth()]+ " (" + currentTest.correct+")";
-                      text.id = child.name+":"+currentTest.assessment;
-                      text.onclick = function() {report(this.id);};
-                      let cell = row.insertCell();
-                      cell.appendChild(text);
-                  }
-              }
-          }
-          table.style.display = "block";
-      });
-    });
-}
-function back(){
-    changeReportTab(currentTab);
-}
-function report(idString){
-    let child = idString.split(":")[0];
-    let assessment = idString.split(":")[1];
-    console.log(child + " " + assessment);
-    document.getElementById('reportTable').style.display = "none";
-    document.getElementById('reportDiv').style.display = "block";
-    document.getElementById('back').style.display = "block";
-    document.getElementById('reportTitle').textContent = child + "-" + assessment;
-    document.getElementById('reportList').innerHTML = "";
-    document.getElementById('score').innerHTML = "";
-    document.getElementById('answers').innerHTML = "";
-
-    getTests().then(tests =>{
-        for(var j = 0; j < tests.length; j++){
-            if(tests[j].assessment == assessment && child == tests[j].currentChild){
-                let link = document.createElement('a');
-                let d = new Date(tests[j].timestamp);
-                link.textContent = d.getMonth() + "-"+d.getDate() + "-"+d.getFullYear();
-                link.id = j;
-                link.onclick = function(){reloadReport(this.id);};
-                document.getElementById('reportList').appendChild(link);
-            }
-        }
-    });
-}
-function reloadReport(test){
-    console.log("Loading test " + test + "...");
-    document.getElementById('answers').innerHTML = "";
-    getTests().then(tests =>{
-        document.getElementById('score').textContent = tests[test].correct;
-        for(var i =0; i < tests[test].questions.length; i++){
-            let newLi = document.createElement('li');
-            if(tests[test].currentAnswers[i] == "Yes"){
-                newLi.classList = "correct";
-            }
-            else{
-                newLi.classList = "incorrect";
-            }
-            newLi.textContent = tests[test].questions[i];
-            if(tests[test].notes[i] !=""){newLi.textContent += " (" + tests[test].notes[i] + ")";}
-            document.getElementById('answers').appendChild(newLi);
-        }
     });
 }
 async function getStudents(){

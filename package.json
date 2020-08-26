@@ -4,8 +4,10 @@
   "description": "Website for teachers to assess their kids and customize how results are shown",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
+  "main": "index.js",
   "keywords": [
     "assessment",
     "teacher",
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/Lexi59/ArticleScorer#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "nedb": "^1.8.0"
+    "nedb": "^1.8.0",
+    "ngrok": "^3.2.7"
   }
 }

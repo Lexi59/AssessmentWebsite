@@ -130,45 +130,16 @@ td{
     margin:0;
     padding: 0;
 }
-#childList{
-    width: 50%;
-    margin: 0 25% 0 25%;
+#rosterTable thead tr td a{
+    text-decoration: none;
+    color:#820263;
 }
-#reportDiv{
-    display:none;
-    width: 100%;
-    align-content: center;
+#rosterTable thead tr td a:visited{
+    color: #820263;
 }
-#back{
-    display:none;
-    width: 3.5em;
-    font-size: 100%;
-    margin: .25em 0 .25em .25em;
+#rosterTable thead tr td a:hover{
+    color:black;
 }
-h2{
-    text-align: center;
-}
-#reportList{
-    display:inline-block;
-    width:100%;
-    text-align: center;
-}
-#reportList a{
-    padding: .75em;
-}
-.correct{
-    color: green;
-}
-.incorrect{
-    color:red;
-}
-#answers li{
-    display: inline-block;
-    float:none;
-    padding: .25em;
-} 
-#answers{
-    display: inline-block;
-    width: 90%;
-    text-align: center;
+tr td ul{
+    text-align: left;
 }
