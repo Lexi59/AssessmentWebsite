@@ -31,7 +31,8 @@ app.post('/tests',(request, response)=>{
 //student database post and get
 app.post('/students', (request, response) =>{
     const data = request.body;
-    studentDatabase.insert(data);
+    if(data.name){studentDatabase.insert(data);}
+    else{studentDatabase.remove({name: data.rname});}
     response.json({status: "success"});
 });
 app.get('/students', (request, response) =>{

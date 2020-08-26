@@ -31,6 +31,19 @@ function createStudent(){
     fetch('/students', options).then(response => {console.log(response.json());});
     location.reload();
 }
+function removeStudent(){
+    var rname = prompt("Enter a name:");
+    const data = {rname};
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+            "Content-Type": "application/json"
+        }
+    };
+    fetch('/students', options).then(response => {console.log(response.json());});
+    location.reload();
+}
 function changeTab(newTab){
     let math = document.getElementById('math');
     let reading = document.getElementById('reading');
