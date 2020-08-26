@@ -2,7 +2,7 @@ const Datastore = require('nedb');
 //use express to host the webpage on the server
 const express = require('express');
 const app = express();
-app.listen(3000, () => console.log("Listening at 3000"));
+app.listen(process.env.PORT || 3000, () => console.log("Listening at 3000"));
 app.use(express.static('public'));
 
 //creating a database
