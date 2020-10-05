@@ -4,8 +4,8 @@ let notes = [];
 let currentChild = "";
 let currentTab = "Math";
 let testDiv, txtQuestion, imgQuestion;
-const mathAssessments = ["Identify Numbers", "Counting","Identify Colors","Greater Than/Less Than","Pattern Recognition","2D Shapes", "3D Shapes","Coins"];
-const mathAssessmentsFunctions = [idNums, counting, colors, gtandlt, patternRecog, shapes2D, shapes3D, coins];
+const mathAssessments = ["Identify Numbers 1-10","Identify Numbers 10-20","Identify Numbers 20-30", "Counting","Identify Colors","Greater Than/Less Than","Pattern Recognition","2D Shapes", "3D Shapes","Coins"];
+const mathAssessmentsFunctions = [idNums1to10, idNums10to20, idNums20to30, counting, colors, gtandlt, patternRecog, shapes2D, shapes3D, coins];
 const readingAssessments = ["Positional Words","Days of the Week","Months","Identify Letters","Identify Letter Sounds","Long Vowel Sounds","Blending Sounds","Blending Nonsense Sounds","Beginning/Middle/Ending Sounds","Color Words","Number Words","Sight Words 1","Sight Words 2"];
 const readingAssessmentsFunctions = [positional, days, months, idLetters, idLetterSounds, longVowels, blendingSounds, blendingNonsense, bmeSounds, colorWords, numberWords, sightOne, sightTwo];
 const phonicsAssessments = ["Rhyming","Blending","Segmenting","Syllables","Phoneme Substitution","Phoneme Deletion"];
@@ -247,6 +247,13 @@ function recordNo(){
     currentQuestion++;
     continueAssessment();
 }
+function goBack(){
+    temp = notes.pop();
+    currentAnswers.pop();
+    document.getElementById("noteBox").value = temp;
+    currentQuestion--;
+    continueAssessment();
+}
 function viewSettings(txt,img){
     txtQuestion.style.fontSize = "1500%";
     txtQuestion.style.margin = "0 0 .25em 0";
@@ -257,14 +264,34 @@ function viewSettings(txt,img){
 }
 
 //assessments
-function idNums(){
+function idNums1to10(){
     viewSettings(true,false);
-    var questions = [3,11,18,9,25,5,23,2,28,12,15,24,1,20,17,14,27,30,7,26,6,19,22,13,4,0,16,10,21,8];
+    var questions = [3,9,5,2,1,7,6,4,0,10,8];
     if(currentQuestion<questions.length){
         txtQuestion.textContent = questions[currentQuestion];
     }
     else{
         finishAssessment(mathAssessments[0], questions);
+    }
+}
+function idNums10to20(){
+    viewSettings(true,false);
+    var questions = [11,18,12,15,17,14,19,13,16,10,20];
+    if(currentQuestion<questions.length){
+        txtQuestion.textContent = questions[currentQuestion];
+    }
+    else{
+        finishAssessment(mathAssessments[1], questions);
+    }
+}
+function idNums20to30(){
+    viewSettings(true,false);
+    var questions = [25,23,28,24,20,27,26,22,21,29,30];
+    if(currentQuestion<questions.length){
+        txtQuestion.textContent = questions[currentQuestion];
+    }
+    else{
+        finishAssessment(mathAssessments[2], questions);
     }
 }
 function colors(){
@@ -274,7 +301,7 @@ function colors(){
         imgQuestion.src = "resources/"+questions[currentQuestion];
     }
     else{
-        finishAssessment(mathAssessments[2], questions);
+        finishAssessment(mathAssessments[4], questions);
     }
 }
 function counting(){
@@ -307,7 +334,7 @@ function counting(){
         txtQuestion.textContent = questions4[currentQuestion-questions.length-questions2.length-questions3.length];
     }
     else{
-        finishAssessment(mathAssessments[1], allQuestions);
+        finishAssessment(mathAssessments[3], allQuestions);
     }
 }
 function gtandlt(){
@@ -325,7 +352,7 @@ function gtandlt(){
         imgQuestion.src = "resources/"+ltquestions[currentQuestion-gtquestions.length];
     }
     else{
-        finishAssessment(mathAssessments[3], allQuestions);
+        finishAssessment(mathAssessments[5], allQuestions);
     }
 }
 function patternRecog(){
@@ -335,7 +362,7 @@ function patternRecog(){
         imgQuestion.src="resources/"+questions[currentQuestion];
     }
     else{
-        finishAssessment(mathAssessments[4], questions);
+        finishAssessment(mathAssessments[6], questions);
     }
 }
 function shapes2D(){
@@ -345,7 +372,7 @@ function shapes2D(){
         imgQuestion.src="resources/"+questions[currentQuestion];
     }
     else{
-        finishAssessment(mathAssessments[5], questions);
+        finishAssessment(mathAssessments[7], questions);
     }
 }
 function shapes3D(){
@@ -355,7 +382,7 @@ function shapes3D(){
         imgQuestion.src="resources/"+questions[currentQuestion];
     }
     else{
-        finishAssessment(mathAssessments[6], questions);
+        finishAssessment(mathAssessments[8], questions);
     }
 }
 function coins(){
@@ -368,7 +395,7 @@ function coins(){
         imgQuestion.src = "resources/"+questions[currentQuestion];
     }
     else{
-        finishAssessment(mathAssessments[7],questions);
+        finishAssessment(mathAssessments[9],questions);
     }
 }
 
