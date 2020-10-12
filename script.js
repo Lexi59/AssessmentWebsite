@@ -163,8 +163,8 @@ function createAssessmentPageTable(table, assessment){
             let row = table.insertRow();
             let text = document.createElement('a');
             text.textContent = children[keys[i]].name;
-            text.id = children[keys[i]].names;
-            text.onclick = function (){assessChild(this.id);}
+            text.id = children[keys[i]].name;
+            text.onclick = function(){assessChild(this.id);}
             let cell = row.insertCell();
             cell.appendChild(text);
             //extra cell for assessment
