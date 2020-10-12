@@ -22,7 +22,7 @@
     // The signed-in user info.
     var user = result.user;
     // ...
-    console.log(user);
+    window.location.href = "home.html";
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
