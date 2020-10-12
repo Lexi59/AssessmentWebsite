@@ -102,7 +102,7 @@ function createRosterTable(table, assessments){
     }
     const tests = getTests().then(function(tests){
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        var col, row, currentTestTime = " ";
+        var col = -1, row, currentTestTime = " ";
         var keys2 = Object.keys(tests);
         for(var i = 0; i < keys2.length; i++){
             currentTest = tests[keys2[i]];
@@ -117,7 +117,7 @@ function createRosterTable(table, assessments){
                     row = n + 1 ;
                 }
             }
-            if(currentTestTime>0){
+            if(currentTestTime>0 && col > -1){
                 table.rows[row].cells[col].innerHTML = months[new Date(currentTestTime).getMonth()];
             }
         }
@@ -180,7 +180,7 @@ function createAssessmentPageTable(table, assessment){
             for(var i = 0; i < keys2.length; i++){
                 currentTest = tests[keys2[i]];
                 currentTestTime = parseInt(tests[keys2[i]].timestamp);
-                for(n = 0; n < keys.length; n++){
+                for(n = 0; n < keys.length-1; n++){
                     if(currentTest.currentChild == children[keys[n]].name){
                         row = n + 1 ;
                     }
