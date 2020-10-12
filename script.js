@@ -44,16 +44,19 @@ function createStudent(){
 }
 function removeStudent(){
     var rname = prompt("Enter a name:");
-    const data = {rname};
-    const options = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-            "Content-Type": "application/json"
+    console.log("made it here");    
+    const children = getStudents().then(function(children){
+        var keys = Object.keys(children);
+        for(var i = 0; i < keys.length; i++){
+            console.log(children[keys[i]].name);
+            console.log(rname);
+            if (children[keys[i]].name == rname){
+                console.log("key found");
+                studentsDB.child(keys[i]).remove();
+            }
         }
-    };
-    fetch('/students', options).then(response => {console.log(response.json());});
-    location.reload();
+        location.reload();
+    });
 }
 function changeTab(newTab){
     let math = document.getElementById('math');
