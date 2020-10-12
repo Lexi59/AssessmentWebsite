@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body onload="javascript:load()">
+      <h1 id="assessTitle"></h1>
+      <p id ="assessingChild"></p>
+      <table id="childList"></table>
+
+      <div id="testDiv">
+        <h1 id="textQuestion"></h1>
+        <div id="imgDiv"><img id="imgQuestion"></div>
+        <button onclick="recordYes();">Yes</button>
+        <button onclick="recordNo();">No </button>
+        <br><br>
+        <label for="noteBox">Notes:</label>
+        <input type="text" id="noteBox">
+        <br><br>
+        <button onclick="goBack();"><-</button>
+      </div>
+      <h1 id ="done">Assessment Complete</h1>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+          https://firebase.google.com/docs/web/setup#available-libraries -->
+      <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-database.js"></script>
+      <script src="script.js"></script>
+  </body>
+</html>
